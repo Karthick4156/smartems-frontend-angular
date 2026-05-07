@@ -1,59 +1,193 @@
-# SmartEmsUi
+# SmartEMS Angular Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.3.
+SmartEMS is a full-stack Employee Management System frontend built using Angular and Tailwind CSS.
 
-## Development server
+This frontend communicates with REST APIs developed in both ASP.NET Core and Flask backends to provide employee management, attendance tracking, leave workflows, and attendance correction management.
 
-To start a local development server, run:
+---
+
+# 🚀 Features
+
+## Authentication
+- JWT Login
+- Role-Based Navigation
+- Route Guards
+- Secure API Access
+
+---
+
+## Admin Features
+- Admin Dashboard
+- Employee Management
+- Create Employee
+- Edit Employee
+- Activate / Deactivate Employees
+- Reset Password
+- Leave Approval Workflow
+- Attendance Correction Approval
+
+---
+
+## Employee Features
+- Employee Dashboard
+- Profile Management
+- Change Password
+- Attendance Punch In / Punch Out
+- Attendance Calendar
+- Apply Leave
+- Request Attendance Correction
+- View Leave & Correction History
+
+---
+
+# 🛠️ Tech Stack
+
+- Angular
+- TypeScript
+- Tailwind CSS
+- Angular Material
+- AG Grid
+- RxJS
+- JWT Authentication
+- REST API Integration
+
+---
+
+# 🏗️ Frontend Architecture
+
+The frontend follows modular component-based architecture.
+
+```text
+Pages → Components → Services → API
+```
+
+---
+
+# 📁 Folder Structure
+
+## core/
+Contains:
+- services
+- interceptors
+- guards
+
+---
+
+## features/
+Contains feature modules:
+- auth
+- admin
+- employee
+- attendance
+- leave
+- corrections
+
+---
+
+## shared/
+Reusable shared components and utilities.
+
+---
+
+# 🔐 Authentication Flow
+
+- User logs in using email & password
+- Backend returns JWT token
+- Token stored in localStorage
+- HTTP interceptor attaches token to API requests
+- Route guards protect authorized routes
+
+---
+
+# 📊 UI Features
+
+- Responsive Dashboard
+- AG Grid Tables
+- Loading States
+- Toast Notifications
+- Calendar Attendance View
+- Role-Based Sidebar
+
+---
+
+# 🌐 Backend Integration
+
+This frontend supports:
+- ASP.NET Core Backend
+- Flask Backend
+
+API communication is handled through Angular services using HttpClient.
+
+---
+
+# ⚙️ Setup Instructions
+
+## 1. Clone Repository
+
+```bash
+git clone <repo-url>
+```
+
+---
+
+## 2. Install Dependencies
+
+```bash
+npm install
+```
+
+---
+
+## 3. Start Angular Development Server
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+# 🌐 Frontend URL
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```text
+http://localhost:4200
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
+# 🔗 Backend API
+
+Update API base URL inside:
+
+```text
+src/environments/
 ```
 
-## Building
+---
 
-To build the project run:
+# 📸 Screenshots
 
-```bash
-ng build
-```
+Add screenshots later:
+- Login Page
+- Dashboard
+- Attendance Page
+- Employee Management
+- Leave Management
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+# 🎯 Learning Outcome
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+This project helped me understand:
+- Angular Component Architecture
+- State Management using RxJS
+- API Integration
+- JWT Authentication Flow
+- Role-Based UI Rendering
+- Reusable UI Components
+- Frontend Performance Optimization
 
-```bash
-ng test
-```
+---
 
-## Running end-to-end tests
+# 👨‍💻 Author
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Karthick K
