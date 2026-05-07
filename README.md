@@ -164,17 +164,6 @@ src/environments/
 
 ---
 
-# 📸 Screenshots
-
-Add screenshots later:
-- Login Page
-- Dashboard
-- Attendance Page
-- Employee Management
-- Leave Management
-
----
-
 # 🎯 Learning Outcome
 
 This project helped me understand:
