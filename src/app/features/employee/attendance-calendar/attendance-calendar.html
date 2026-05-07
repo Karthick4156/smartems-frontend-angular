@@ -1,0 +1,39 @@
+<div class="p-4">
+
+    <h2 class="text-xl font-bold mb-4">
+        Attendance Calendar - {{ currentDate | date:'MMMM yyyy' }}
+    </h2>
+
+    <div class="grid grid-cols-7 gap-2 text-center">
+
+        <!-- Day headers -->
+        <div *ngFor="let d of ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']" class="font-bold">
+            {{ d }}
+        </div>
+
+        <!-- Days -->
+        <div *ngFor="let day of days" class="p-3 rounded text-sm flex flex-col items-center"
+            [ngClass]="day ? getColor(day.status) : ''">
+
+            <ng-container *ngIf="day; else emptyDay">
+
+                <div class="font-semibold">
+                    {{ day.date.getDate() }}
+                </div>
+
+                <div *ngIf="day.status !== 'Future'" class="text-xs mt-1">
+                    {{ day.status }}
+                </div>
+
+            </ng-container>
+
+            <ng-template #emptyDay>
+                <!-- empty placeholder to keep alignment -->
+                <div class="invisible">0</div>
+            </ng-template>
+
+        </div>
+
+    </div>
+
+</div>

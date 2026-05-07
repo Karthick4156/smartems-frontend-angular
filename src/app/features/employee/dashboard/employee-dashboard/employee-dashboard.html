@@ -1,0 +1,62 @@
+<div class="page-container">
+
+  <h1 class="page-title">Dashboard</h1>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+
+    <div class="card">
+      <p class="text-gray-500 text-sm">Today</p>
+      <p class="text-xl font-bold">{{ data?.todayStatus }}</p>
+    </div>
+
+    <div class="card">
+      <p class="text-gray-500 text-sm">Leaves Taken</p>
+      <p class="text-xl font-bold text-green-600">
+        {{ data?.leaveTaken }}
+      </p>
+    </div>
+
+    <div class="card">
+      <p class="text-gray-500 text-sm">Pending Leaves</p>
+      <p class="text-xl font-bold text-yellow-500">
+        {{ data?.pendingLeaves ?? 0 }}
+      </p>
+    </div>
+
+    <div class="card">
+      <p class="text-gray-500 text-sm">Corrections</p>
+      <p class="text-xl font-bold text-red-600">
+        {{ data?.pendingCorrections }}
+      </p>
+    </div>
+
+  </div>
+
+  <div class="card">
+    <h2 class="section-title">Today's Attendance</h2>
+
+    <div class="grid grid-cols-3 gap-4">
+      <div>
+        <p class="text-gray-500 text-sm">Punch In</p>
+        <p class="font-semibold">
+          {{ formatIST( data?.punchIn) }}
+        </p>
+      </div>
+
+      <div>
+        <p class="text-gray-500 text-sm">Punch Out</p>
+        <p class="font-semibold">
+          {{ formatIST(data?.punchOut) }}
+        </p>
+      </div>
+
+      <div>
+        <p class="text-gray-500 text-sm">Work Hours</p>
+        <p class="font-semibold">
+          {{ data?.workHours }} hrs
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>

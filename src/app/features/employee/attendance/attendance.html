@@ -1,0 +1,46 @@
+<div class="grid grid-cols-3 gap-4">
+
+    <!-- STATUS CARD -->
+    <div class="bg-white p-4 rounded shadow">
+        <h3 class="text-gray-500">Today Status ({{ today?.date | date:'mediumDate' }})</h3>
+        <p class="text-xl font-bold">{{ today?.status || 'Not Marked' }}</p>
+    </div>
+
+    <!-- PUNCH IN -->
+    <div class="bg-white p-4 rounded shadow">
+        <h3 class="text-gray-500">Punch In</h3>
+        <p>{{ formatTime(today?.punchIn) }}</p>
+    </div>
+
+    <!-- PUNCH OUT -->
+    <div class="bg-white p-4 rounded shadow">
+        <h3 class="text-gray-500">Punch Out</h3>
+        <p>{{ formatTime(today?.punchOut) }}</p>
+    </div>
+
+</div>
+
+<!-- ACTION -->
+<div class="mt-6">
+    <button class="bg-green-600 text-white px-6 py-2 rounded mr-2" (click)="punchIn()" [disabled]="!canPunchIn">
+        Punch In
+    </button>
+
+    <button class="bg-red-600 text-white px-6 py-2 rounded" (click)="punchOut()" [disabled]="!canPunchOut">
+        Punch Out
+    </button>
+</div>
+
+<div class="mt-4">
+    <p *ngIf="message" class="text-green-600 font-semibold">
+        {{ message }}
+    </p>
+
+    <p *ngIf="errorMessage" class="text-red-600 font-semibold">
+        {{ errorMessage }}
+    </p>
+</div>
+
+<ag-grid-angular class="ag-theme-alpine mt-6" style="width: 100%; height: 400px" [rowData]="attendance"
+    [columnDefs]="columnDefs">
+</ag-grid-angular>

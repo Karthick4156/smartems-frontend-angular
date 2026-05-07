@@ -1,0 +1,64 @@
+<div class="p-4 max-w-md mx-auto">
+
+  <h2 class="text-xl font-bold mb-4 text-center">
+    Attendance Correction
+  </h2>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="space-y-4">
+
+    <!-- DATE -->
+    <div>
+      <label class="block text-sm text-gray-600 mb-1">Select Date</label>
+      <input
+        type="date"
+        formControlName="date"
+        class="border p-2 w-full rounded"
+      />
+
+      <div *ngIf="form.get('date')?.touched && form.get('date')?.invalid"
+           class="text-red-500 text-sm mt-1">
+        Date is required
+      </div>
+    </div>
+
+    <!-- REASON -->
+    <div>
+      <label class="block text-sm text-gray-600 mb-1">Reason</label>
+      <input
+        type="text"
+        placeholder="Enter reason"
+        formControlName="reason"
+        class="border p-2 w-full rounded"
+      />
+
+      <div *ngIf="form.get('reason')?.touched && form.get('reason')?.invalid"
+           class="text-red-500 text-sm mt-1">
+        Reason must be at least 5 characters
+      </div>
+    </div>
+
+    <!-- ERROR -->
+    <div *ngIf="errorMessage"
+         class="bg-red-100 text-red-700 px-3 py-2 rounded text-sm">
+      {{ errorMessage }}
+    </div>
+
+    <!-- SUCCESS -->
+    <div *ngIf="message"
+         class="bg-green-100 text-green-700 px-3 py-2 rounded text-sm">
+      {{ message }}
+    </div>
+
+    <!-- SUBMIT BUTTON -->
+    <button
+      type="submit"
+      [disabled]="isSubmitting"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition">
+
+      {{ isSubmitting ? 'Submitting...' : 'Submit Request' }}
+
+    </button>
+
+  </form>
+
+</div>

@@ -1,0 +1,133 @@
+<div class="min-h-screen grid grid-cols-1 md:grid-cols-2 bg-gray-50">
+
+  <!-- LEFT SIDE - BRANDING -->
+  <div class="hidden md:flex flex-col justify-center items-center bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white p-10 shadow-xl">
+    <div class="text-center max-w-sm space-y-6">
+      <div class="flex justify-center mb-4">
+        <mat-icon class="text-white" [style.font-size]="'48px'" [style.width]="'48px'" [style.height]="'48px'">lock</mat-icon>
+      </div>
+      <div>
+        <h1 class="text-5xl font-bold mb-3 tracking-tight">Smart EMS</h1>
+        <p class="text-lg opacity-90 leading-relaxed">
+          Manage employees, attendance, and leaves efficiently in one unified platform.
+        </p>
+      </div>
+      <div class="pt-6 space-y-2 text-sm opacity-75">
+        <p>✓ Real-time attendance tracking</p>
+        <p>✓ Leave management system</p>
+        <p>✓ Comprehensive reporting</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT SIDE - LOGIN FORM -->
+  <div class="flex items-center justify-center px-4 py-8 md:p-8 bg-gray-50 min-h-screen md:min-h-auto">
+
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()"
+      class="w-full max-w-sm md:max-w-md"
+    >
+
+      <!-- CARD WRAPPER -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 space-y-6">
+
+        <!-- HEADER -->
+        <div class="text-center space-y-2">
+          <h2 class="text-3xl font-bold text-gray-900">Welcome Back</h2>
+          <p class="text-gray-600 text-sm">Sign in to your account to continue</p>
+        </div>
+
+        <!-- FORM FIELDS -->
+        <div class="space-y-5">
+
+          <!-- EMAIL FIELD -->
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Email Address</mat-label>
+            <input
+              matInput
+              formControlName="email"
+              type="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+            />
+            <mat-icon matPrefix class="text-gray-400">email</mat-icon>
+            <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+              Email is required
+            </mat-error>
+            <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
+              Please enter a valid email address
+            </mat-error>
+          </mat-form-field>
+
+          <!-- PASSWORD FIELD -->
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Password</mat-label>
+            <input
+              matInput
+              [type]="hidePassword ? 'password' : 'text'"
+              formControlName="password"
+              placeholder="Enter your password"
+              autocomplete="current-password"
+            />
+            <mat-icon matPrefix class="text-gray-400">lock</mat-icon>
+            <!-- Show / Hide Password Toggle -->
+            <button
+              mat-icon-button
+              matSuffix
+              type="button"
+              (click)="togglePassword()"
+              class="text-gray-400 hover:text-gray-600"
+              [attr.aria-label]="hidePassword ? 'Show password' : 'Hide password'"
+            >
+              <mat-icon class="text-lg">
+                {{ hidePassword ? 'visibility_off' : 'visibility' }}
+              </mat-icon>
+            </button>
+            <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+              Password is required
+            </mat-error>
+          </mat-form-field>
+
+        </div>
+
+        <!-- ERROR MESSAGE -->
+        <div
+          *ngIf="errorMessage"
+          class="bg-red-50 border border-red-200 rounded-lg p-3 flex items-start gap-3"
+        >
+          <mat-icon class="text-red-500 flex-shrink-0 mt-0.5">error</mat-icon>
+          <p class="text-red-700 text-sm font-medium">{{ errorMessage }}</p>
+        </div>
+
+        <!-- LOGIN BUTTON -->
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="isLoading || loginForm.invalid"
+          class="w-full h-12 text-base font-semibold rounded-lg transition-all duration-200"
+          [class.opacity-70]="isLoading || loginForm.invalid"
+        >
+          <span *ngIf="!isLoading" class="flex items-center justify-center gap-2">
+            <mat-icon>login</mat-icon>
+            Sign In
+          </span>
+          <span *ngIf="isLoading" class="flex items-center justify-center gap-2">
+            <mat-spinner diameter="20" class="inline-block"></mat-spinner>
+            Signing in...
+          </span>
+        </button>
+
+        <!-- FOOTER INFO -->
+        <p class="text-center text-xs text-gray-500 pt-2">
+          Secure login • All data encrypted
+        </p>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

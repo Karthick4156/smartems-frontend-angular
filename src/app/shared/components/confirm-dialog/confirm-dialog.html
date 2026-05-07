@@ -1,0 +1,49 @@
+<div class="p-6 w-full max-w-md">
+
+  <!-- HEADER -->
+  <div class="flex items-start gap-3 mb-4">
+
+    <!-- ICON -->
+    <div
+      class="w-10 h-10 flex items-center justify-center rounded-full"
+      [ngClass]="{
+        'bg-red-100 text-red-600': data.type === 'danger',
+        'bg-yellow-100 text-yellow-600': data.type === 'warning',
+        'bg-blue-100 text-blue-600': !data.type
+      }"
+    >
+      <mat-icon>
+        {{ data.type === 'danger' ? 'warning' : 'help' }}
+      </mat-icon>
+    </div>
+
+    <!-- TITLE + MESSAGE -->
+    <div>
+      <h2 class="text-lg font-semibold text-gray-800">
+        {{ data.title }}
+      </h2>
+      <p class="text-sm text-gray-500 mt-1">
+        {{ data.message }}
+      </p>
+    </div>
+
+  </div>
+
+  <!-- ACTIONS -->
+  <div class="flex justify-end gap-3 mt-6">
+
+    <button mat-button (click)="close(false)">
+      Cancel
+    </button>
+
+    <button
+      mat-raised-button
+      [color]="data.type === 'danger' ? 'warn' : 'primary'"
+      (click)="close(true)"
+    >
+      {{ data.confirmText || 'Confirm' }}
+    </button>
+
+  </div>
+
+</div>

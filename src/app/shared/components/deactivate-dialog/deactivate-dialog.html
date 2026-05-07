@@ -1,0 +1,66 @@
+<form [formGroup]="form">
+
+  <div class="p-6 w-full max-w-md space-y-5">
+
+    <!-- TITLE -->
+    <h2 class="text-lg font-semibold text-gray-800">
+      Deactivate Employee
+    </h2>
+
+    <p class="text-sm text-gray-500">
+      Select a reason for deactivation
+    </p>
+
+    <!-- DROPDOWN -->
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Reason</mat-label>
+
+      <mat-select formControlName="reason">
+        <mat-option *ngFor="let r of reasons" [value]="r.value">
+          {{ r.label }}
+        </mat-option>
+      </mat-select>
+
+      <mat-error *ngIf="form.get('reason')?.invalid">
+        Reason is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- 🔥 CUSTOM INPUT -->
+    <div *ngIf="form.get('reason')?.value === 'other'">
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Enter Reason</mat-label>
+
+        <input matInput formControlName="customReason" />
+
+        <mat-error *ngIf="form.get('customReason')?.invalid">
+          Custom reason is required
+        </mat-error>
+
+      </mat-form-field>
+
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="flex justify-end gap-3 pt-2">
+
+      <button mat-button type="button" (click)="close()">
+        Cancel
+      </button>
+
+      <button
+        mat-raised-button
+        color="warn"
+        type="button"
+        (click)="submit()"
+        [disabled]="form.invalid"
+      >
+        Deactivate
+      </button>
+
+    </div>
+
+  </div>
+
+</form>

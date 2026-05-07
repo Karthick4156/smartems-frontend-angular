@@ -1,0 +1,168 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="flex flex-col h-[85vh]">
+
+  <!-- HEADER -->
+  <div class="p-5 border-b bg-white">
+    <h2 class="text-xl font-semibold text-gray-800">
+      {{ isEditMode ? 'Edit Employee' : 'Add Employee' }}
+    </h2>
+    <p class="text-sm text-gray-500">
+      Enter employee details below
+    </p>
+  </div>
+
+  <!-- BODY -->
+  <div class="flex-1 overflow-y-auto p-6 space-y-6 bg-gray-50">
+
+    <!-- SECTION: BASIC INFO -->
+    <div class="bg-white rounded-2xl shadow-sm p-5 space-y-5">
+
+      <h3 class="text-sm font-semibold text-gray-600 border-b pb-2">
+        Basic Information
+      </h3>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+        <!-- Name -->
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" class="focus:outline-none" />
+          <mat-error *ngIf="form.get('name')?.hasError('required')">
+            Name is required
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Email -->
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" />
+          <mat-error *ngIf="form.get('email')?.hasError('required')">
+            Email is required
+          </mat-error>
+          <mat-error *ngIf="form.get('email')?.hasError('email')">
+            Invalid email
+          </mat-error>
+        </mat-form-field>
+
+      </div>
+
+      <!-- Password Section -->
+      <div *ngIf="!isEditMode" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Password</mat-label>
+          <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" />
+          <button mat-icon-button matSuffix type="button" (click)="togglePassword()">
+            <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Confirm Password</mat-label>
+          <input matInput [type]="hideConfirmPassword ? 'password' : 'text'" formControlName="confirmPassword" />
+          <button mat-icon-button matSuffix type="button" (click)="toggleConfirmPassword()">
+            <mat-icon>{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+        </mat-form-field>
+
+      </div>
+
+    </div>
+
+    <!-- SECTION: CONTACT -->
+    <div class="bg-white rounded-2xl shadow-sm p-5 space-y-5">
+
+      <h3 class="text-sm font-semibold text-gray-600 border-b pb-2">
+        Contact Details
+      </h3>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Phone</mat-label>
+          <input matInput formControlName="phone" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="address" />
+        </mat-form-field>
+
+      </div>
+
+    </div>
+
+    <!-- SECTION: JOB -->
+    <div class="bg-white rounded-2xl shadow-sm p-5 space-y-5">
+
+      <h3 class="text-sm font-semibold text-gray-600 border-b pb-2">
+        Job Details
+      </h3>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+        <!-- Department -->
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Department</mat-label>
+          <mat-select formControlName="departmentId">
+            <mat-option *ngFor="let d of departments" [value]="d.id">
+              {{ d.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Designation -->
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Designation</mat-label>
+          <mat-select formControlName="designationId">
+            <mat-option *ngFor="let d of designations" [value]="d.id">
+              {{ d.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Joining Date -->
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Joining Date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="joiningDate" />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="flex justify-end gap-3 p-4 border-t bg-white">
+
+    <button mat-button type="button" (click)="close()">
+      Cancel
+    </button>
+
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="form.invalid || isSaving"
+    class="px-6 flex items-center gap-2"
+    >
+
+    <!-- Spinner -->
+    <mat-spinner *ngIf="isSaving" diameter="18"></mat-spinner>
+
+    <!-- Text -->
+    <span *ngIf="!isSaving">
+      {{ isEditMode ? 'Update' : 'Create' }}
+    </span>
+
+    <span *ngIf="isSaving">
+      {{ isEditMode ? 'Updating...' : 'Creating...' }}
+    </span>
+
+    </button>
+
+  </div>
+
+</form>

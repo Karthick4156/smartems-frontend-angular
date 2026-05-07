@@ -1,0 +1,32 @@
+<mat-card class="max-w-xl mx-auto mt-6">
+
+  <mat-card-header>
+    <div mat-card-avatar class="bg-gray-600 text-white flex items-center justify-center">
+      {{ profile?.name?.charAt(0) || 'U' }}
+    </div>
+
+    <mat-card-title>{{ profile?.name }}</mat-card-title>
+    <mat-card-subtitle>{{ profile?.email }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content class="mt-4 space-y-2">
+
+    <p><b>Employee Code:</b> {{ profile?.employeeCode }}</p>
+    <p><b>Phone:</b> {{ profile?.phone }}</p>
+    <p><b>Address:</b> {{ profile?.address }}</p>
+    <p><b>Department:</b> {{ profile?.department }}</p>
+    <p><b>Designation:</b> {{ profile?.designation }}</p>
+
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-raised-button color="primary" (click)="openEdit()">
+      Edit
+    </button>
+
+    <button mat-stroked-button color="accent" (click)="openChangePassword()">
+      Change Password
+    </button>
+  </mat-card-actions>
+
+</mat-card>

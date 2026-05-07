@@ -1,3 +1,165 @@
-/* You can add global styles to this file, and also import other style files */
-
+/* Global styles */
 @import 'tailwindcss';
+
+/* Angular Material fix */
+.mat-mdc-dialog-content {
+  overflow: hidden !important;
+}
+
+/* 🎨 DESIGN SYSTEM */
+
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1e40af;
+
+  --success: #16a34a;
+  --danger: #dc2626;
+  --warning: #f59e0b;
+
+  --bg-page: #f3f4f6;
+  --bg-card: #ffffff;
+
+  --text-main: #1f2937;
+  --text-muted: #6b7280;
+}
+
+/* 🧱 COMMON COMPONENT CLASSES */
+
+.page-container {
+  padding: 1.5rem;
+  /* p-6 */
+  background-color: var(--bg-page);
+  /* bg-gray-100 */
+  min-height: 100vh;
+  /* min-h-screen */
+}
+
+.card {
+  background-color: var(--bg-card);
+  /* bg-white */
+  border-radius: 0.75rem;
+  /* rounded-xl */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  /* shadow */
+  padding: 1.5rem;
+  /* p-6 */
+}
+
+.section-title {
+  font-size: 1.125rem;
+  /* text-lg */
+  font-weight: 600;
+  /* font-semibold */
+  color: var(--text-main);
+  /* text-gray-800 */
+  margin-bottom: 1rem;
+  /* mb-4 */
+}
+
+.page-title {
+  font-size: 1.5rem;
+  /* text-2xl */
+  font-weight: 700;
+  /* font-bold */
+  color: var(--text-main);
+  /* text-gray-800 */
+  margin-bottom: 1.5rem;
+  /* mb-6 */
+}
+
+.ag-theme-alpine {
+  --ag-border-radius: 12px;
+  --ag-font-size: 14px;
+  --ag-header-background-color: #f9fafb;
+  --ag-row-hover-color: #f3f4f6;
+}
+
+.ag-header-cell-label {
+  justify-content: center !important;
+}
+
+.ag-header-cell-label {
+  text-align: center;
+}
+
+.header-center .ag-header-cell-label {
+  justify-content: center !important;
+}
+
+.mat-mdc-dialog-container {
+  border-radius: 16px !important;
+}
+
+.mat-mdc-snack-bar-container.bg-green-600 {
+  background-color: #16a34a !important;
+  color: white !important;
+}
+
+.mat-mdc-snack-bar-container.bg-red-500 {
+  background-color: #ef4444 !important;
+  color: white !important;
+}
+
+/* 🎯 INPUT FOCUS STATES */
+
+.input {
+  @apply w-full border border-gray-300 rounded-lg px-3 py-2 transition-all duration-200;
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+  @apply hover:border-gray-400;
+}
+
+.input:disabled {
+  @apply bg-gray-100 text-gray-500 cursor-not-allowed;
+}
+
+/* Material form field focus enhancement */
+.mat-mdc-form-field-focus-overlay {
+  background-color: rgba(37, 99, 235, 0.04) !important;
+}
+
+.mat-mdc-text-field-wrapper:focus-within {
+  border-color: #2563eb !important;
+}
+
+
+.mat-mdc-snack-bar-container.bg-blue-600 {
+  background-color: #2563eb !important;
+  color: white !important;
+}
+
+/* 🎯 AG-GRID ROW HOVER EFFECT */
+
+.ag-theme-alpine .ag-row:hover {
+  background-color: #f3f4f6 !important;
+  transition: background-color 0.15s ease;
+}
+
+.ag-theme-alpine .ag-row-selected {
+  background-color: #dbeafe !important;
+}
+
+.ag-theme-alpine .ag-row-selected:hover {
+  background-color: #bfdbfe !important;
+}
+
+/* Better row padding */
+.ag-theme-alpine .ag-cell {
+  padding: 0.75rem 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Status badge enhancement */
+.ag-theme-alpine .ag-cell-value {
+  white-space: normal;
+  word-break: break-word;
+}
+
+.logout-item:hover {
+  color: #ef4444; /* Tailwind red-500 */
+}
+
+.logout-item:hover .mat-icon {
+  color: #ef4444;
+}
+

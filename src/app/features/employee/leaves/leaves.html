@@ -1,0 +1,90 @@
+<div class="p-6 max-w-2xl mx-auto">
+
+  <!-- TITLE -->
+  <h2 class="text-2xl font-semibold mb-4">Apply Leave</h2>
+
+  <!-- FORM -->
+  <form [formGroup]="form" (ngSubmit)="submit()" class="space-y-4 bg-white p-5 rounded-lg shadow">
+
+    <!-- Leave Type -->
+    <div>
+      <label class="block text-sm font-medium mb-1">Leave Type</label>
+      <select formControlName="leaveType" class="border rounded p-2 w-full">
+        <option value="Paid">Paid</option>
+        <option value="Sick">Sick</option>
+      </select>
+    </div>
+
+    <!-- Dates -->
+    <div class="grid grid-cols-2 gap-3">
+      <div>
+        <label class="block text-sm font-medium mb-1">From Date</label>
+        <input type="date" formControlName="fromDate" class="border rounded p-2 w-full" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium mb-1">To Date</label>
+        <input type="date" formControlName="toDate" class="border rounded p-2 w-full" />
+      </div>
+    </div>
+
+    <!-- Reason -->
+    <div>
+      <label class="block text-sm font-medium mb-1">Reason</label>
+      <textarea formControlName="reason" rows="2" placeholder="Enter reason..."
+        class="border rounded p-2 w-full"></textarea>
+    </div>
+
+    <!-- ERROR -->
+    <div *ngIf="errorMessage" class="text-red-500 text-sm">
+      {{ errorMessage }}
+    </div>
+
+    <!-- BUTTON -->
+    <button type="submit" [disabled]="form.invalid"
+      class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded w-full disabled:opacity-50">
+      Apply Leave
+    </button>
+
+  </form>
+
+  <!-- LIST -->
+  <h2 class="text-xl font-semibold mt-8 mb-3">My Leaves</h2>
+
+  <div *ngIf="leaves.length === 0" class="text-gray-500">
+    No leave requests yet.
+  </div>
+
+  <div *ngFor="let l of leaves" class="bg-white shadow rounded p-4 mb-3">
+
+    <div class="flex justify-between items-center">
+
+      <!-- Info -->
+      <div>
+        <div class="font-medium">
+          {{ l.leaveType }}
+        </div>
+        <div class="text-sm text-gray-500">
+          {{ l.fromDate | date:'mediumDate' }} → {{ l.toDate | date:'mediumDate' }}
+        </div>
+      </div>
+
+      <!-- Status Badge -->
+      <span class="px-3 py-1 text-sm rounded-full" [ngClass]="{
+          'bg-yellow-100 text-yellow-700': l.status === 'Pending',
+          'bg-green-100 text-green-700': l.status === 'Approved',
+          'bg-red-100 text-red-700': l.status === 'Rejected'
+        }">
+        {{ l.status }}
+      </span>
+
+    </div>
+
+    <!-- Reason -->
+    <div class="text-sm text-gray-600 mt-2">
+      {{ l.reason }}
+    </div>
+
+  </div>
+
+</div>
